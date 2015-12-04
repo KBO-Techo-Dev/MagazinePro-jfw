@@ -1,4 +1,4 @@
-framework-app
-=============
+MagazinePro by Joomla! Framework
+================================
 
-Joomla! Framework Sample Application
+Joomla! Framework MagazinePro Application
