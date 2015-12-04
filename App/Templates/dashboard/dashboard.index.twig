@@ -1,0 +1,94 @@
+{% extends "index.twig" %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1>Congratulations!<br/>It's Installed</h1>
+
+        <p class="lead">You've now got the Joomla! Framework installed and you're ready to get started coding. If you have questions, be sure to check out the docs.</p>
+        <a class="btn btn-large btn-success" href="https://developer.joomla.org/framework/documentation.html" target="_blank">Documentation</a>
+    </div>
+
+    <hr>
+
+    <div class="row-fluid marketing">
+        <div class="span6">
+            <h4>Bootstrap</h4>
+            <p>This install comes preloaded with the Twitter Bootstrap package pre-installed, symlinked and ready to use.</p>
+
+            <h4>jQuery</h4>
+            <p>This install comes preloaded with the latest jQuery packages pre-installed, symlinked and ready to use.</p>
+
+            <h4>Twig</h4>
+            <p>This install comes preloaded with Twig as the templating package pre-installed and ready to use.</p>
+        </div>
+
+        <div class="span6">
+            <h4>Themes</h4>
+            <p>This install has a sample theme called "Awesome". Yes, you're looking at it. Create your own theme and set as the default in config.json</p>
+
+            <h4>Database</h4>
+            <p>This install has a database setup included. (Be sure to checkout the config.json file)</p>
+
+            <h4>Routing</h4>
+            <p>This install uses a static routing file (routes.json) and also includes minor code to demo automatic routing.</p>
+        </div>
+    </div>
+    <hr/>
+    {% if success == false %}
+        <div class="row-fluid well">
+            <h4>You should setup your database now. </h4>
+            <!-- <a href="#databaseModal" role="button" class="btn" data-toggle="modal">Enter DB Settings</a> -->
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#databaseModal">
+                Enter DB Settings
+            </button>
+        </div>
+        <!-- Modal -->
+        <!-- <div id="databaseModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="databaseModalLabel" aria-hidden="true"> -->
+        <div id="databaseModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="databaseModalLabel" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="databaseModalLabel">Enter Database Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action='{{base_url}}dashboard/updateDatabase' method='post'>
+                            <div class="row-fluid">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="dbdriver" class="control-label">Database Driver</label>
+                                        <input type="text" class="form-control" id="dbdriver" value="{{ config.database.driver }}" placeholder="e.g. mysql"/>
+                                        <label for="dbhost" class="control-label">Database Host</label>
+                                        <input type="text" class="form-control" id="dbhost" value="{{ config.database.host }}" placeholder="e.g. localhost"/>
+                                        <label for="dbname" class="control-label">Database Name</label>
+                                        <input type="text" class="form-control" id="dbname" value="{{ config.database.name }}" placeholder="e.g. myapp"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="dbprefix" class="control-label">Database Table Prefix</label>
+                                        <input type="text" class="form-control" id="dbprefix" value="{{ config.database.prefix }}" placeholder="e.g. app_"/>
+                                        <label for="dbuser" class="control-label">Database User</label>
+                                        <input type="text" class="form-control" id="dbuser" value="{{ config.database.user }}" placeholder="e.g. root"/>
+                                        <label for="dbpassword" class="control-label">Database Password</label>
+                                        <input type="password" size="20" class="form-control" id="dbpassword" value="{{ config.database.password }}" placeholder="password"/>
+                                    </div>
+                                </div>
+                                <div class="alert alert-info">
+                                    <label><input type="checkbox" value="1" name="install_sample_data"/>
+                                        Install Sample Data
+                                    </label>
+                                </div>                                    
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                        <button type="submit" class="btn btn-primary">Update Database</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

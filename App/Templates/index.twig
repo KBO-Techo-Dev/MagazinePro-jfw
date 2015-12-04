@@ -1,0 +1,83 @@
+{% set firstPart = uri.route|split("/")|first %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>
+<!--> 
+<html> 
+<!--<![endif]-->
+<head>
+    <!-- Title -->
+    <title>
+        {% block title %}MagazinePro - Membership Management{% endblock %}
+    </title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="MagazinePro is a Membership Management App">
+    <meta name="author" content="KBO Admin">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <!-- Favicon -->
+    <link href="{{themePath}}images/favicon.ico" rel="icon" type="image/x-icon">
+    <link href="{{themePath}}images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="{{themePath}}images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
+    <!-- link rel="apple-touch-icon" href="{{themePath}}images/icon57.png" sizes="57x57" -->
+    <!-- link rel="apple-touch-icon" href="{{themePath}}images/icon72.png" sizes="72x72" -->
+    <!-- link rel="apple-touch-icon" href="{{themePath}}images/icon76.png" sizes="76x76" -->
+    <!-- link rel="apple-touch-icon" href="{{themePath}}images/icon114.png" sizes="114x114" -->
+    <!-- link rel="apple-touch-icon" href="{{themePath}}images/icon120.png" sizes="120x120" -->
+    <!-- link rel="apple-touch-icon" href="{{themePath}}images/icon144.png" sizes="144x144" -->
+    <!-- link rel="apple-touch-icon" href="{{themePath}}images/icon152.png" sizes="152x152" -->        
+    <!-- link rel="apple-touch-icon" href="{{themePath}}images/icon180.png" sizes="180x180" -->
+    
+    <!-- Bootstrap -->
+    <link href="{{uri.base.path}}assets/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"/>
+    <link href="{{uri.base.path}}assets/bootstrap/3.3.5/css/bootstrap-theme.css" rel="stylesheet"/>
+    <link href="{{uri.base.path}}assets/jquery-ui/1.11.4/jquery-ui.css" rel="stylesheet"/>
+    <link href="{{uri.base.path}}assets/jquery-ui/1.11.4/jquery-ui.structure.css" rel="stylesheet"/>
+    <link href="{{uri.base.path}}assets/jquery-ui/1.11.4/jquery-ui.theme.css" rel="stylesheet"/>    
+    <link href="{{themePath}}css/theme.css" rel="stylesheet"/>
+
+    <!-- JavaScript -->
+    <script src="{{uri.base.path}}assets/jquery/2.1.4/jquery.min.js"></script>
+    <script src="{{uri.base.path}}assets/jquery-ui/1.11.4/jquery-ui.min.js"></script>    
+    <script src="{{uri.base.path}}assets/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container-narrow">
+        <div class="masthead">
+            <ul class="nav nav-pills pull-right">
+                <li class="{{ "" == uri.route or "dashboard" == firstPart ? "active" : "" }}"><a href="{{ uri.base.path }}">Home</a></li>
+                <li class="{{ "news" == uri.route or "news" == firstPart ? "active" : "" }}"><a href="{{ uri.base.path }}news">Sample Page</a></li>
+                <li><a href="https://developer.joomla.org/framework/documentation.html">Docs</a></li>
+            </ul>
+            <h3 class="muted">MagazinePro</h3>
+        </div>
+
+        <hr>
+        {% block subtitle %}{% endblock %}
+        {% for type, flashMessages in flashBag %}
+            {% for flashMessage in flashMessages %}
+                <div class="alert alert-{{ type }}">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% block content %}{% endblock %}
+        
+        <hr>
+        <div class="footer">
+            <p>&copy; MagazinePro</p>
+            {{ date('Y') }} 
+        </div>
+    </div>
+</body>
+</html>

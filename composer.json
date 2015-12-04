@@ -1,0 +1,28 @@
+{
+    "name": "magazinepro/magazinepro-application",
+    "description": "MagazinePro Application for Joomla Framework",
+    "keywords": ["magazinepro-app","joomla-framework"],
+    "license": "GPL-2.0+",
+    "version": "1.0.0",
+    "require": {
+        "php": ">=5.3.10",
+        "joomla/framework": "1.*@stable",
+        "symfony/http-foundation": "2.*@stable",
+        "twig/twig" : "1.*@stable",
+        "twbs/bootstrap":"3.*"
+    },
+	"require-dev": {
+		"filp/whoops": "1.0.*@stable"
+	},
+    "scripts": {
+        "post-install-cmd": [
+            "App\\Setup\\InstallScript::postInstall"
+        ]
+    },
+    "autoload": {
+        "psr-0": {
+            "App": ""
+        }
+    },
+    "minimum-stability": "dev"
+}
